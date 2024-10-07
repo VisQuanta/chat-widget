@@ -1,4 +1,6 @@
-(function() {
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('Chat widget script running after DOM is loaded.');
+
     // Create chat bubble
     const chatBubble = document.createElement('div');
     chatBubble.id = 'chat-bubble';
@@ -96,4 +98,4 @@
             confirmationBubble.textContent = 'There was an error submitting the form. Please try again later.';
         });
     });
-})();
+});
