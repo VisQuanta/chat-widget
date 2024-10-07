@@ -1,46 +1,51 @@
-// Get the script tag that contains data attributes for customization
-const scriptTag = document.currentScript || document.querySelector('script[data-primary-color]');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Widget Test</title>
+  <style>
+    /* Basic chat bubble */
+    #chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #1e90ff; /* Custom primary color */
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 30px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+    #chat-bubble:hover {
+      background-color: #ff4500; /* Custom secondary color */
+    }
+  </style>
+</head>
+<body>
 
-// Default values for customization
-const primaryColor = scriptTag.getAttribute('data-primary-color') || '#bb162b';
-const secondaryColor = scriptTag.getAttribute('data-secondary-color') || '#d24c60';
-const chatIcon = scriptTag.getAttribute('data-chat-icon') || '💬';
+<!-- Chat bubble -->
+<div id="chat-bubble">💬</div>
 
-// Create and style the chat bubble
-const chatBubble = document.createElement('div');
-chatBubble.id = 'chat-bubble';
-chatBubble.style.position = 'fixed';
-chatBubble.style.bottom = '20px';
-chatBubble.style.right = '20px';
-chatBubble.style.backgroundColor = primaryColor;
-chatBubble.style.color = 'white';
-chatBubble.style.borderRadius = '50%';
-chatBubble.style.width = '60px';
-chatBubble.style.height = '60px';
-chatBubble.style.display = 'flex';
-chatBubble.style.justifyContent = 'center';
-chatBubble.style.alignItems = 'center';
-chatBubble.style.cursor = 'pointer';
-chatBubble.style.fontSize = '30px';
-chatBubble.style.fontWeight = 'bold';
-chatBubble.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-chatBubble.style.transition = 'transform 0.3s ease, background-color 0.3s ease';
-chatBubble.textContent = chatIcon;
+<script>
+  console.log("Script loaded and running");
 
-// Hover effect
-chatBubble.addEventListener('mouseenter', () => {
-  chatBubble.style.backgroundColor = secondaryColor;
-  chatBubble.style.transform = 'scale(1.1)';
-});
-chatBubble.addEventListener('mouseleave', () => {
-  chatBubble.style.backgroundColor = primaryColor;
-  chatBubble.style.transform = 'scale(1)';
-});
+  const chatBubble = document.getElementById('chat-bubble');
+  if (chatBubble) {
+    chatBubble.addEventListener('click', () => {
+      alert('Chat bubble clicked!');
+    });
+  } else {
+    console.error('Chat bubble element not found.');
+  }
+</script>
 
-// Append the chat bubble to the document body
-document.body.appendChild(chatBubble);
-
-// Placeholder for click functionality
-chatBubble.addEventListener('click', () => {
-  alert('Chat bubble clicked!');
-});
+</body>
+</html>
