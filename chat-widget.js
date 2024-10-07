@@ -42,26 +42,33 @@
 </div>
 
 <script>
-  // Get the script tag and retrieve the customizable variables from data attributes
+  // Check that the script tag is available and accessible
   const scriptTag = document.currentScript || document.querySelector('script[data-primary-color]');
 
-  // Extract customization from data attributes
-  const primaryColor = scriptTag.getAttribute('data-primary-color') || '#bb162b';
-  const secondaryColor = scriptTag.getAttribute('data-secondary-color') || '#d24c60';
-  const chatIcon = scriptTag.getAttribute('data-chat-icon') || '💬';
+  // Fallback: Check if the script tag exists and has the attributes
+  if (scriptTag) {
+    // Extract customizable data from attributes, with defaults
+    const primaryColor = scriptTag.getAttribute('data-primary-color') || '#bb162b';
+    const secondaryColor = scriptTag.getAttribute('data-secondary-color') || '#d24c60';
+    const chatIcon = scriptTag.getAttribute('data-chat-icon') || '💬';
 
-  // Apply custom styles using CSS variables
-  document.documentElement.style.setProperty('--primary-color', primaryColor);
-  document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+    // Apply the styles dynamically using CSS variables
+    document.documentElement.style.setProperty('--primary-color', primaryColor);
+    document.documentElement.style.setProperty('--secondary-color', secondaryColor);
 
-  // Update the chat icon dynamically
-  const chatBubble = document.getElementById('chat-bubble');
-  chatBubble.textContent = chatIcon;
+    // Update the chat icon dynamically
+    const chatBubble = document.getElementById('chat-bubble');
+    if (chatBubble) {
+      chatBubble.textContent = chatIcon;
+    }
 
-  // Event listener for click functionality (to be extended for popup later)
-  chatBubble.addEventListener('click', () => {
-    alert('Chat bubble clicked!'); // Placeholder for future functionality
-  });
+    // Placeholder for future functionality when the bubble is clicked
+    chatBubble.addEventListener('click', () => {
+      alert('Chat bubble clicked!');
+    });
+  } else {
+    console.error('Script tag with data attributes not found.');
+  }
 </script>
 
 </body>
